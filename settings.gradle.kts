@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "superinit-lint-sample"
 include(":app")
- 
+include(":lint")
