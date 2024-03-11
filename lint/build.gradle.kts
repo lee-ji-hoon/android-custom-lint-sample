@@ -1,6 +1,7 @@
 plugins {
     id("java-library")
-    alias(libs.plugins.jetbrains.kotlin.jvm)
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.android.lint)
 }
 
 java {
@@ -8,8 +9,19 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 
+lint {
+    htmlReport = true
+    htmlOutput = file("lint-report.html")
+    baseline = file("lint-baseline.xml")
+//    textReport = true
+//    absolutePaths = false
+//    ignoreTestSources = true
+}
+
 dependencies {
-    compileOnly(libs.bundles.lint)
+    // For a description of the below dependencies, see the main project README
+    compileOnly(libs.bundles.lint.api)
+    testImplementation(libs.bundles.lint.tests)
 }
 
 tasks.withType<Jar> {
