@@ -6,7 +6,7 @@ import com.android.tools.lint.detector.api.Issue
 
 class CustomLintRegistry: IssueRegistry() {
 
-    override val issues: List<Issue> = emptyList()
-    override val api: Int = CURRENT_API
-    override val minApi: Int = 12
+    override val issues: List<Issue> = listOf(
+        DtoDefaultValueDetector.ISSUE
+    )
 }
