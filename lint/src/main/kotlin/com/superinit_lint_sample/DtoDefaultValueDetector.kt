@@ -1,7 +1,6 @@
 package com.superinit_lint_sample
 
 import com.android.tools.lint.client.api.UElementHandler
-import com.android.tools.lint.detector.api.Category
 import com.android.tools.lint.detector.api.Detector
 import com.android.tools.lint.detector.api.Implementation
 import com.android.tools.lint.detector.api.Issue
@@ -10,7 +9,6 @@ import com.android.tools.lint.detector.api.LintFix
 import com.android.tools.lint.detector.api.Scope
 import com.android.tools.lint.detector.api.Severity
 import com.android.tools.lint.detector.api.SourceCodeScanner
-import com.android.tools.lint.detector.api.isKotlin
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtParameter
 import org.jetbrains.uast.UClass
@@ -25,21 +23,18 @@ class DtoDefaultValueDetector : Detector(), SourceCodeScanner {
         return listOf(UClass::class.java)
     }
 
-    override fun createUastHandler(context: JavaContext): UElementHandler? {
-        if (isKotlin(context.uastFile?.lang).not()) return null
-
+    override fun createUastHandler(context: JavaContext): UElementHandler {
         return object : UElementHandler() {
             override fun visitClass(node: UClass) {
                 val ktClass = node.sourcePsi as? KtClass ?: return
-                node.getAnnotation(KOTLINX_SERIALIZABLE) ?: return
-                if (context.doesPackageNotContain("dto").not()) return
-
+                val isSerializableClass = ktClass.getAnnotation("Serializable")
+                if (isSerializableClass.not()) return
                 ktClass.primaryConstructorParameters
                     .filterNot { it.hasDefaultValue() }
                     .forEach { parameter ->
                         context.report(
                             issue = ISSUE,
-                            scope = parameter,
+                            scope = parameter.nameIdentifier,
                             location = context.getLocation(parameter),
                             message = "해당 필드의 기본값을 할당해주세요.",
                             quickfixData = createDefaultValueFix(parameter),
@@ -62,7 +57,6 @@ class DtoDefaultValueDetector : Detector(), SourceCodeScanner {
     }
 
     companion object {
-        private const val KOTLINX_SERIALIZABLE = "kotlinx.serialization.Serializable"
         val ISSUE: Issue = Issue.create(
             id = "DtoDefaultValueDetector",
             briefDescription = "Dto의 data class에서 기본 값을 할당해주세요.",
@@ -71,6 +65,12 @@ class DtoDefaultValueDetector : Detector(), SourceCodeScanner {
             severity = Severity.ERROR,
             implementation = Implementation(DtoDefaultValueDetector::class.java, Scope.JAVA_FILE_SCOPE),
         )
+    }
+}
+
+internal fun KtClass.getAnnotation(targetAnnotationName: String): Boolean {
+    return annotationEntries.any {
+        it.calleeExpression?.typeReference?.text == targetAnnotationName
     }
 }
 

@@ -1,12 +1,13 @@
 package com.superinit_lint_sample.dto
 
-import android.annotation.SuppressLint
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class LintSample(
-    val result: Int,
-    val data: List<Streaming>
+    @SerialName("streaming_list")
+    val streamingList: List<Streaming>,
+    val message: String
 )
 
 @Serializable
