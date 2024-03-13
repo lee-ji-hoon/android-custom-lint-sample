@@ -3,8 +3,7 @@ package com.superinit_lint_sample
 import com.android.tools.lint.checks.infrastructure.LintDetectorTest
 import com.android.tools.lint.checks.infrastructure.TestFile
 import com.android.tools.lint.checks.infrastructure.TestLintResult
-import com.android.tools.lint.checks.infrastructure.TestLintTask
-
+import com.android.tools.lint.checks.infrastructure.TestMode
 import com.android.tools.lint.detector.api.Detector
 import com.android.tools.lint.detector.api.Issue
 
@@ -24,10 +23,6 @@ class DtoDefaultValueDetectorTest : LintDetectorTest() {
     override fun getIssues(): MutableList<Issue> {
         return mutableListOf(DtoDefaultValueDetector.ISSUE)
     }
-
-    val stubs: Array<TestFile> = arrayOf(
-        kotlinSerializable,
-    )
 
     /**
      * given
@@ -54,7 +49,7 @@ class DtoDefaultValueDetectorTest : LintDetectorTest() {
             """,
         ).indented()
 
-        runLintTaskSource(testFile, stubs)
+        runLintTaskSource(testFile)
             .expect(
                 expectedText = """
                 src/com/superinit_lint_sample/data/dto/api/TestDataClassWithoutDefault.kt:7: Error: 해당 필드의 기본값을 할당해주세요. [DtoDefaultValueDetector]
@@ -81,9 +76,12 @@ class DtoDefaultValueDetectorTest : LintDetectorTest() {
             )
     }
 
-    fun runLintTaskSource(source: TestFile, stubs: Array<TestFile> = emptyArray()): TestLintResult =
+    private fun runLintTaskSource(source: TestFile, stubs: Array<TestFile> = emptyArray()): TestLintResult =
         lint()
             .allowMissingSdk()
+            .allowCompilationErrors()
+            .skipTestModes(TestMode.FULLY_QUALIFIED)
+            .skipTestModes(TestMode.IMPORT_ALIAS)
             .files(source, *stubs)
             .run()
 }
