@@ -13,13 +13,12 @@ lint {
     htmlReport = true
     htmlOutput = file("lint-report.html")
     baseline = file("lint-baseline.xml")
-//    textReport = true
-//    absolutePaths = false
-//    ignoreTestSources = true
+    textReport = true
+    absolutePaths = false
+    ignoreTestSources = true
 }
 
 dependencies {
-    // For a description of the below dependencies, see the main project README
     compileOnly(libs.bundles.lint.api)
     testImplementation(libs.bundles.lint.tests)
 }
