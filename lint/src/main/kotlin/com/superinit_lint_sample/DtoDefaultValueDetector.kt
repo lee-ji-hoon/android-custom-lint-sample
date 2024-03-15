@@ -36,7 +36,7 @@ class DtoDefaultValueDetector : Detector(), SourceCodeScanner {
                             issue = ISSUE,
                             scope = parameter.nameIdentifier,
                             location = context.getLocation(parameter),
-                            message = "해당 필드의 기본값을 할당해주세요.",
+                            message = "해당 필드의 기본값을 할당해주세요",
                             quickfixData = createDefaultValueFix(parameter),
                         )
                     }
@@ -59,8 +59,8 @@ class DtoDefaultValueDetector : Detector(), SourceCodeScanner {
     companion object {
         val ISSUE: Issue = Issue.create(
             id = "DtoDefaultValueDetector",
-            briefDescription = "Dto의 data class에서 기본 값을 할당해주세요.",
-            explanation = "기본값이 존재하지 않을 경우 MissingFieldException이 발생할수도 있습니다.",
+            briefDescription = "Dto의 data class에서 기본 값을 할당해주세요",
+            explanation = "기본값이 존재하지 않을 경우 `MissingFieldException`이 발생할수도 있습니다.",
             priority = 1,
             severity = Severity.ERROR,
             implementation = Implementation(DtoDefaultValueDetector::class.java, Scope.JAVA_FILE_SCOPE),
