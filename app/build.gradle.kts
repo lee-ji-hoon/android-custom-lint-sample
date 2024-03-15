@@ -66,5 +66,4 @@ dependencies {
     implementation(libs.kotlin.serialization.json)
 
     lintChecks(project(":lint"))
-    implementation(project(":lint"))
 }
