@@ -25,6 +25,6 @@ dependencies {
 
 tasks.withType<Jar> {
     manifest {
-        attributes(mapOf("Lint-Registry-v2" to "com.superinit_lint_sample.CustomLintRegistry"))
+        attributes(mapOf("Lint-Registry-v2" to "com.superinit_lint_sample.LintRegistry"))
     }
 }
