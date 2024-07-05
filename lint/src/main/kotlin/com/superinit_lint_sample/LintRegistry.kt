@@ -6,6 +6,7 @@ import com.android.tools.lint.detector.api.Issue
 class LintRegistry : IssueRegistry() {
 
     override val issues: List<Issue> = listOf(
-        DtoDefaultValueDetector.ISSUE
+        DtoDefaultValueDetector.ISSUE,
+        CustomConstraintLayoutDetector.ISSUE
     )
 }
