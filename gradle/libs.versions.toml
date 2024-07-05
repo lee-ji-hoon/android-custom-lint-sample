@@ -10,6 +10,7 @@ activityCompose = "1.8.2"
 composeBom = "2023.08.00"
 lint = "31.3.0"
 kotlin-serializaition = "1.5.1"
+constraintlayout = "2.1.4"
 
 
 [libraries]
@@ -34,6 +35,7 @@ lint-cli = { group = "com.android.tools.lint", name = "lint", version.ref = "lin
 lint-tests = { group = "com.android.tools.lint", name = "lint-tests", version.ref = "lint" }
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serializaition" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 
 [bundles]
 lint-api = [

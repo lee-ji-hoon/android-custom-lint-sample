@@ -21,7 +21,7 @@ class CustomConstraintLayoutDetectorTest : LintDetectorTest() {
     fun testMissingConstraints() {
         @Language("XML")
         val xml = """
-            <com.yourpackage.CustomConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <com.superinit_lint_sample.CustomConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -41,7 +41,7 @@ class CustomConstraintLayoutDetectorTest : LintDetectorTest() {
                     android:layout_height="wrap_content"
                     android:text="Button 2" />
 
-            </com.yourpackage.CustomConstraintLayout>
+            </com.superinit_lint_sample.CustomConstraintLayout>
         """.trimIndent()
 
         lint()
@@ -60,7 +60,7 @@ class CustomConstraintLayoutDetectorTest : LintDetectorTest() {
     fun testBarrierConstraints() {
         @Language("XML")
         val xml = """
-            <com.yourpackage.CustomConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <com.superinit_lint_sample.CustomConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -86,7 +86,7 @@ class CustomConstraintLayoutDetectorTest : LintDetectorTest() {
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
-            </com.yourpackage.CustomConstraintLayout>
+            </com.superinit_lint_sample.CustomConstraintLayout>
         """.trimIndent()
 
         lint()
@@ -98,7 +98,7 @@ class CustomConstraintLayoutDetectorTest : LintDetectorTest() {
     fun testFlowConstraints() {
         @Language("XML")
         val xml = """
-            <com.yourpackage.CustomConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <com.superinit_lint_sample.CustomConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -121,7 +121,7 @@ class CustomConstraintLayoutDetectorTest : LintDetectorTest() {
                     android:layout_height="wrap_content"
                     android:text="Button 2" />
 
-            </com.yourpackage.CustomConstraintLayout>
+            </com.superinit_lint_sample.CustomConstraintLayout>
         """.trimIndent()
 
         lint()
@@ -133,7 +133,7 @@ class CustomConstraintLayoutDetectorTest : LintDetectorTest() {
     fun testHorizontallyUnconstrained() {
         @Language("XML")
         val xml = """
-            <com.yourpackage.CustomConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <com.superinit_lint_sample.CustomConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -145,7 +145,7 @@ class CustomConstraintLayoutDetectorTest : LintDetectorTest() {
                     android:text="Button 1"
                     app:layout_constraintTop_toTopOf="parent" />
 
-            </com.yourpackage.CustomConstraintLayout>
+            </com.superinit_lint_sample.CustomConstraintLayout>
         """.trimIndent()
 
         lint()
@@ -164,7 +164,7 @@ class CustomConstraintLayoutDetectorTest : LintDetectorTest() {
     fun testVerticallyUnconstrained() {
         @Language("XML")
         val xml = """
-            <com.yourpackage.CustomConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <com.superinit_lint_sample.CustomConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -176,7 +176,7 @@ class CustomConstraintLayoutDetectorTest : LintDetectorTest() {
                     android:text="Button 1"
                     app:layout_constraintStart_toStartOf="parent" />
 
-            </com.yourpackage.CustomConstraintLayout>
+            </com.superinit_lint_sample.CustomConstraintLayout>
         """.trimIndent()
 
         lint()

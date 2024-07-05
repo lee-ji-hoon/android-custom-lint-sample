@@ -18,7 +18,7 @@ import org.w3c.dom.Node
 class CustomConstraintLayoutDetector : LayoutDetector() {
 
     override fun getApplicableElements(): Collection<String> {
-        return setOf("com.yourpackage.CustomConstraintLayout")
+        return setOf("com.superinit_lint_sample.CustomConstraintLayout")
     }
 
     override fun visitElement(context: XmlContext, element: Element) {
